@@ -1,6 +1,7 @@
 "use stric";
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
 
 var video = document.querySelector("video"),
 	videos = document.querySelectorAll("video"),
@@ -42,9 +43,9 @@ var video = document.querySelector("video"),
 	};
 
 
-navigator.getUserMedia("video", function (LocalMediaStream) {
+navigator.getUserMedia({"video": true}, function (LocalMediaStream) {
 	Array.prototype.forEach.call(videos, function (e, i) {
-		e.src = window.webkitURL.createObjectURL(LocalMediaStream);
+		e.src = window.URL.createObjectURL(LocalMediaStream);
 	});
 	//video.src = window.webkitURL.createObjectURL(LocalMediaStream);
 }, onFailSoHard);
