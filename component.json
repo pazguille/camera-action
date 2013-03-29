@@ -2,7 +2,7 @@
   "name": "camera-action",
   "repo": "pazguille/camera-action",
   "description": "Camera-action is a component to ease camera (getusermedia) management.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "Guille Paz <guille87paz@gmail.com>",
   "twitter": "@pazguille",
   "keywords": [

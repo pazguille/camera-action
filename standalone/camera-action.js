@@ -91,13 +91,13 @@
         return this;
     };
 
-    Camera.prototype.cut = function () {
+    Camera.prototype.pause = function () {
         this._video.pause();
 
         return this;
     };
 
-    Camera.prototype.remove = function () {
+    Camera.prototype.cut = function () {
         this._video.src = "";
         this._stream.stop();
         this._stream = undefined;

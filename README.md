@@ -2,6 +2,14 @@
 
 Camera-action is a component to ease camera (getusermedia) management.
 
+It's cross-browser compatible:
+
+- Firefox
+- Google Chrome
+- Opera
+
+Note: `getUserMedia` has to be enabled in Firefox by setting the `media.peerconnection.enabled` option to `true` in about:config.
+
 ## Installation
 
     $ component install pazguille/camera-action
@@ -16,7 +24,64 @@ Also, you can use the standalone version:
 
 ## How-to
 
+First, defines the camera's `container` and its `options` (see the API):
+```js
+var container = document.querySelector('#container'),
+    options = {
+        'width': 640,
+        'height': 480
+    };
+```
+
+Now, requires and creates a new instance of `camera-action`:
+```js
+var Camera = require('camera-action'),
+    camera = new Camera(container, options);
+```
+
+Then, starts to use it!:
+```js
+camera.action();
+```
+
+![Camera... Action!](http://i1356.photobucket.com/albums/q731/pazguille/ScreenShot2013-03-29at112306AM_zps05a1bccd.png?t=1364567391)
+
 ## API
+
+### Camera#action()
+Adds the camera to its container and starts to record.
+```js
+camera.action();
+```
+
+### Camera#pause()
+Pause the camera.
+```js
+camera.pause();
+```
+
+### Camera#takePhoto() [WIP]
+Takes a snapshot from the camera.
+```js
+camera.takePhoto();
+```
+
+### Camera#cut()
+Removes the camera from its container.
+```js
+camera.cut();
+```
+
+### options
+- `width`: (number) The size width of the camera. The default value is `320`.
+- `height`: (number)The size height of the camera. The default value is `240`.
+- `hd`: (boolean) Turn on HD to capture in 720p (works only in Chrome). The default value is `false`.
+
+### Events [WIP]
+- `action`: emitted when the camera is started.
+- `pause`: emitted when the camera is paused.
+- `cut`: emitted when the camera is removed.
+- `photo`: emitted when the camera take a photo.
 
 ## Contact
 - Guille Paz (Frontend developer - JavaScript developer | Web standards lover)
