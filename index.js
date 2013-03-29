@@ -27,7 +27,7 @@ Camera.prototype.init = function (el, options) {
     options.width = options.width || 320;
     options.height = options.height || 240;
 
-    this.el = container;
+    this.el = el;
     this.width = options.width;
     this.height = options.height;
     this._constraints = options.hd ? constraints : true;
@@ -48,7 +48,7 @@ Camera.prototype._createVideo = function () {
     this._video = video;
 
     return this;
-}
+};
 
 Camera.prototype.action = function () {
 
@@ -83,7 +83,7 @@ Camera.prototype._success = function (LocalMediaStream) {
 };
 
 Camera.prototype._fail = function () {
-    console.log('Your browser doesn\'t support this feature.');
+    window.console.log('Your browser doesn\'t support this feature.');
 
     return this;
 };
