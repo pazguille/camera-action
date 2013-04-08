@@ -106,15 +106,24 @@ Camera.prototype.cut = function () {
 };
 
 Camera.prototype.takePhoto = function (options) {
+    var strImage;
+
     options = options || {};
 
-    options.output = options.output || 'image/jpg';
+    options.type = options.type || 'image/png';
     options.width = this._canvas.width = options.width || this.width;
     options.height = this._canvas.height = options.height || this.height;
+    options.download = (options.download !== undefined) ? options.download : false;
 
     this._canvas.getContext('2d').drawImage(this._video, 0, 0, options.width, options.height);
 
-    return this._canvas.toDataURL(options.output);
+    strImage = this._canvas.toDataURL(options.type, options.jpegquality);
+
+    if (options.download) {
+        document.location.href = strImage.replace(options.type, 'image/octet-stream');
+    }
+
+    return strImage;
 };
 
 /**
