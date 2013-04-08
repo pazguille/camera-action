@@ -35,6 +35,8 @@
         this.height = options.height;
         this._constraints = options.hd ? constraints : true;
 
+        this._canvas = document.createElement('canvas');
+
         this._createVideo();
 
         return this;
@@ -106,9 +108,30 @@
         return this;
     };
 
+    Camera.prototype.takePhoto = function (options) {
+        var strImage;
+
+        options = options || {};
+
+        options.type = options.type || 'image/png';
+        options.width = this._canvas.width = options.width || this.width;
+        options.height = this._canvas.height = options.height || this.height;
+        options.download = (options.download !== undefined) ? options.download : false;
+
+        this._canvas.getContext('2d').drawImage(this._video, 0, 0, options.width, options.height);
+
+        strImage = this._canvas.toDataURL(options.type, options.jpegquality);
+
+        if (options.download) {
+            document.location.href = strImage.replace(options.type, 'image/octet-stream');
+        }
+
+        return strImage;
+    };
+
     /**
      * Expose Camera
      */
-    window.Camera = Camera;
+    exports = module.exports = Camera;
 
 }(this));
