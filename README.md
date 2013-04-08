@@ -60,10 +60,20 @@ Pause the camera.
 camera.pause();
 ```
 
-### Camera#takePhoto() [WIP]
+### Camera#takePhoto(options)
 Takes a snapshot from the camera.
+- `width`: (number) [optional] The size width of the photo. The default value is camera's width.
+- `height`: (number) [optional] The size height of the photo. The default value is camera's height.
+- `type`: (string) [optional] URL containing a representation of the image in the format specified. The default value is `image/png`.
+- `download` (boolean) [optional] Force to download the image. The default value is `false`.
+- `jpegquality`: (string) [optional] The quality level of a JPEG image in the range of 0.0 to 1.0.
+
 ```js
-camera.takePhoto();
+camera.takePhoto({
+    'width': 640,
+    'height': 480,
+    'download': true
+});
 ```
 
 ### Camera#cut()
@@ -72,10 +82,19 @@ Removes the camera from its container.
 camera.cut();
 ```
 
-### options
+### Options
 - `width`: (number) The size width of the camera. The default value is `320`.
 - `height`: (number)The size height of the camera. The default value is `240`.
 - `hd`: (boolean) Turn on HD to capture in 720p (works only in Chrome). The default value is `false`.
+
+Recommended sizes:
+
+- 1280x720
+- 960x720
+- 640x360
+- 640x480
+- 320x240
+- 320x180
 
 ### Events [WIP]
 - `action`: emitted when the camera is started.
