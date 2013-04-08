@@ -32,6 +32,8 @@ Camera.prototype.init = function (el, options) {
     this.height = options.height;
     this._constraints = options.hd ? constraints : true;
 
+    this._canvas = document.createElement('canvas');
+
     this._createVideo();
 
     return this;
@@ -101,6 +103,18 @@ Camera.prototype.cut = function () {
     this.el.removeChild(this._video);
 
     return this;
+};
+
+Camera.prototype.takePhoto = function (options) {
+    options = options || {};
+
+    options.output = options.output || 'image/jpg';
+    options.width = this._canvas.width = options.width || this.width;
+    options.height = this._canvas.height = options.height || this.height;
+
+    this._canvas.getContext('2d').drawImage(this._video, 0, 0, options.width, options.height);
+
+    return this._canvas.toDataURL(options.output);
 };
 
 /**
