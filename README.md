@@ -96,11 +96,12 @@ Recommended sizes:
 - 320x240
 - 320x180
 
-### Events [WIP]
+### Events
 - `action`: emitted when the camera is started.
 - `pause`: emitted when the camera is paused.
 - `cut`: emitted when the camera is removed.
-- `photo`: emitted when the camera take a photo.
+- `photo`: emitted when the camera take a photo. Also, receive as parameter the dataURI of the taken photo.
+- `fail`: emitted when the browser doesn\'t support the camera feature.
 
 ## Contact
 - Guille Paz (Frontend developer - JavaScript developer | Web standards lover)
